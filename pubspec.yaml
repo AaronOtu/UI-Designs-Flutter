@@ -73,7 +73,14 @@ flutter:
     - images/lily.png
     - images/draco.png
     - images/money-recieve.png
+    - images/arrow-send.png
+    - images/cardicon1.png
+    - images/logo1.png
+    - images/tag1.png
+    - images/money-sendgr.png
     - images/based.png
+    - images/view-button.png
+    
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
