@@ -2,10 +2,105 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_designs/screens/fig2.dart';
+import 'package:my_designs/screens/mid_page.dart';
 import 'package:my_designs/widgets/Icon_container.dart';
 import 'package:my_designs/widgets/font_widget.dart';
 import 'package:my_designs/widgets/card_container.dart';
+
+
+
+
+class HomePage extends StatefulWidget {
+  
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+      int _selectedIndex = 0;
+
+       final List<Widget> _screens =
+       [
+        const FigmaPage1(),
+        const FigmaPage1(),
+        const FigmaPage1(),
+        const FigPage2(),
+        
+       ] ;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: InkWell(
+        onTap: (){
+          Navigator.push(context,  MaterialPageRoute(builder: (context) => MiddleButton()));
+          debugPrint('The image has been clicked');},
+        child: Image(image: AssetImage('images/navigation.png')) ,
+
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: (index){
+          setState((){
+           _selectedIndex = index;
+          });
+        },
+        backgroundColor: const Color(0xFF0C0D0E),
+         type: BottomNavigationBarType.fixed,
+        elevation: 0, 
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+        items: [
+          const BottomNavigationBarItem(
+            icon: FaIcon(FontAwesomeIcons.house),
+            activeIcon: FaIcon(FontAwesomeIcons.house),
+            label: '',
+          ),
+          const BottomNavigationBarItem(
+            icon: FaIcon(FontAwesomeIcons.bell),
+            activeIcon: FaIcon(FontAwesomeIcons.solidBell),
+            label: '',
+          ),
+        const BottomNavigationBarItem(icon: SizedBox(),label:''),
+         
+          const BottomNavigationBarItem(
+            icon: FaIcon(FontAwesomeIcons.bell),
+            activeIcon: FaIcon(FontAwesomeIcons.solidBell),
+            label: '',
+          ),
+          const BottomNavigationBarItem(
+            icon: FaIcon(FontAwesomeIcons.user),
+            activeIcon: FaIcon(FontAwesomeIcons.solidUser),
+            label: '',
+          ),
+        ],
+              ),
+      body:IndexedStack(
+        index: _selectedIndex,
+        children: _screens,
+      )
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class FigmaPage1 extends ConsumerStatefulWidget {
   const FigmaPage1({super.key});
@@ -67,21 +162,20 @@ class _FigmaPage1State extends ConsumerState<FigmaPage1> {
     "color": Color(0xFFED0B4F)
   },
   {
-    'cardLog': 'images/logo1.png',
+    'cardLog': 'images/logo2.png',
     "cardName": 'TCB Card',
     "bankName": 'TCB Bank',
     "plan":'Monthly interest',
-    "cardIcon":'images/cardicon1.png',
+    "cardIcon":'images/cardicon2.png',
     "amount":'+\$18.000',
-    "sendRecieve":'images/tag1.png',
-    "sendRecieveIcon": 'images/arrow-send.png',
-    "color": Color(0xFFED0B4F)
+    "sendRecieve":'images/recieve-button.png',
+    "sendRecieveIcon": 'images/arrow-received.png',
+    "color": Color(0xFFA3FEA6)
   },
 
  ];
  
-
-
+ 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -89,6 +183,7 @@ class _FigmaPage1State extends ConsumerState<FigmaPage1> {
 
     return Scaffold(
       backgroundColor: Color(0xFF0C0D0E),
+      
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -252,22 +347,33 @@ class _FigmaPage1State extends ConsumerState<FigmaPage1> {
                           top: BorderSide(color: Colors.grey, width: 0.5))),
                   child: Column(
                     children: [
-                      const SizedBox(height:45),
-                      Image(image:AssetImage('images/view-button.png')),
-                   const SizedBox(height:30),
+                  //     const SizedBox(height:40),
+                  //   // Image(image:AssetImage('images/view-button.png')),
+                  // //  const SizedBox(height:2),
 
+                    ListView.builder(
+                       shrinkWrap: true, 
+                       physics: NeverScrollableScrollPhysics(),
+                      itemCount:list.length + 1,
+                      itemBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.only(top:0,right:8.0,left:8,bottom:8),
+                        child: index == 0 ?
+                          Image(image:AssetImage('images/view-button.png'))
+                        : CardWidget(
+                          cardLogo: list[index - 1]["cardLog"], 
+                          cardName: list[index-1]["cardName"], 
+                          bankName: list[index-1]["bankName"], 
+                          plan: list[index-1]["plan"], 
+                          cardIcon: list[index-1]["cardIcon"], 
+                          amount: list[index-1]["amount"], 
+                          sendRecieve: list[index-1]["sendRecieve"], 
+                          sendRecieveIcon: list[index-1]["sendRecieveIcon"],
+                          color: list[index-1]["color"],
+                          ),
+                      ),
+                    ),
 
-
-                    CardWidget(
-                        cardLogo: 'images/logo1.png',
-                        cardName: 'ACB Card',
-                        bankName: 'Spotify',
-                        plan: 'Monthly Price',
-                        cardIcon: 'images/cardicon1.png',
-                        amount: '-\$12.000',
-                        sendRecieve: 'images/tag1.png',
-                        sendRecieveIcon: 'images/arrow-send.png',
-                        color: Color(0xFFED0B4F))
+                  
                   ])),
 
 
@@ -278,22 +384,13 @@ class _FigmaPage1State extends ConsumerState<FigmaPage1> {
                 right: 0,
                 child: Center(
                   child: Container(
-                      // height: 100,
+              
                        width: 170,
-                      // decoration: BoxDecoration(
-                      //   image: DecorationImage(
-                      //       image: AssetImage('images/based.png'),
-                      //       fit: BoxFit.cover),
-                      // ),
+                
                       color:Color(0xFF0C0D0E),
                       child: Center(
                         child: 
-                        // Xtext(
-                        //     text: 'History',
-                        //     fontSize: 24,
-                        //     color: Colors.white.withOpacity(0.7),
-                        //     fontWeight: FontWeight.bold),
-                        Text('History',
+                       Text('History',
                             style: TextStyle(
                                 fontFamily: 'ClashDisplay',
                                 fontSize: 24,
@@ -310,6 +407,7 @@ class _FigmaPage1State extends ConsumerState<FigmaPage1> {
         ),
       ),
     );
+  
   }
 }
 

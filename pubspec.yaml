@@ -80,6 +80,30 @@ flutter:
     - images/money-sendgr.png
     - images/based.png
     - images/view-button.png
+    - images/recieve-button.png
+    - images/logo2.png
+    - images/cardicon2.png
+    - images/arrow-received.png
+    - images/navigation.png
+    - images/more-circle.png
+    - images/stack-user.png
+    - images/edit-button.png
+    - images/function.png
+    - images/share-icon.png
+    - images/arrow-swap.png
+    - images/logout.png
+    - images/card-icon.png
+    - images/phone-icon.png
+    - images/currency-icon.png
+    - images/arrow.png
+    - images/arrow-square-left.png
+    - images/v-logo.png
+    - images/pink-icon.png
+    - images/pencil.png
+    - images/profile-circle.png
+    - images/card-number-icon.png
+    - images/calendar.png
+    - images/arrow-down.png
     
   #   - images/a_dot_ham.jpeg
 

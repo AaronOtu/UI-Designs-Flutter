@@ -32,7 +32,7 @@ class CardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Container(
       height: 130,
-      width:380,
+      width:300,
      decoration: BoxDecoration(
       color: Color(0xFF17181C),
       borderRadius: BorderRadius.circular(32)
