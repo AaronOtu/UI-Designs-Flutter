@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_designs/screens/fig2.dart';
 import 'package:my_designs/screens/mid_page.dart';
+import 'package:my_designs/screens/ringtone.dart';
 import 'package:my_designs/widgets/Icon_container.dart';
 import 'package:my_designs/widgets/font_widget.dart';
 import 'package:my_designs/widgets/card_container.dart';
@@ -27,9 +28,11 @@ class _HomePageState extends State<HomePage> {
        final List<Widget> _screens =
        [
         const FigmaPage1(),
+        //const RingtonePage(),
         const FigmaPage1(),
         const FigmaPage1(),
         const FigPage2(),
+        
         
        ] ;
 
@@ -45,6 +48,8 @@ class _HomePageState extends State<HomePage> {
 
       ),
       bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels:false,
         currentIndex: _selectedIndex,
         onTap: (index){
           setState((){
@@ -423,7 +428,9 @@ class SenRecCon extends StatelessWidget {
       padding:
           const EdgeInsets.only(top: 8.0, right: 8.0, left: 8.0, bottom: 5.0),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          //Navigator.push(context, MaterialPageRoute(builder: (context) => RingtonePage()));
+        },
         child: Container(
           height: 85,
           width: 93,
